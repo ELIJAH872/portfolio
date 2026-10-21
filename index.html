@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMOADE CREATIVE | Graphics, Media & Front-End Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: '#131b2e',
+                        borderBg: '#1e293b',
+                        accentPink: '#ff007f',
+                        accentPurple: '#7f00ff',
+                        accentBlue: '#00d4ff',
+                        accentGreen: '#00ff87',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 25px rgba(127, 0, 255, 0.4), 0 0 50px rgba(0, 212, 255, 0.2)' },
+                            '50%': { boxShadow: '0 0 40px rgba(255, 0, 127, 0.6), 0 0 80px rgba(0, 255, 135, 0.4)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom 4-Color Gradient Animated Underline */
+        .gradient-hover-link {
+            position: relative;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .gradient-hover-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #ff007f, #7f00ff, #00d4ff, #00ff87);
+            background-size: 300% 100%;
+            transition: width 0.4s ease-in-out;
+            border-radius: 9999px;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        .gradient-hover-link:hover::after {
+            width: 100%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated Border for Circular Profile Photos */
+        .animated-profile-ring {
+            position: relative;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(45deg, #ff007f, #7f00ff, #00d4ff, #00ff87);
+            background-size: 300% 300%;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(19, 27, 46, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #ff007f, #7f00ff);
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-200 font-sans antialiased selection:bg-accentPurple selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- NAVIGATION BAR                             -->
+    <!-- ========================================== -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-card border-b border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-accentPink via-accentPurple to-accentBlue p-0.5">
+                    <div class="w-full h-full bg-darkBg rounded-full flex items-center justify-center font-bold font-heading text-xl text-white group-hover:scale-105 transition">
+                        O
+                    </div>
+                </div>
+                <span class="font-heading font-extrabold text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 group-hover:from-accentPink group-hover:to-accentBlue transition duration-300">
+                    OMOADE <span class="text-accentBlue">CREATIVE</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#home" class="gradient-hover-link text-gray-300 hover:text-white py-1">Home</a>
+                <a href="#about" class="gradient-hover-link text-gray-300 hover:text-white py-1">About Me</a>
+                <a href="#skills" class="gradient-hover-link text-gray-300 hover:text-white py-1">Skills & Tools</a>
+                <a href="#projects" class="gradient-hover-link text-gray-300 hover:text-white py-1">Projects</a>
+                <a href="#contact" class="gradient-hover-link text-gray-300 hover:text-white py-1">Contact</a>
+            </nav>
+
+            <!-- Call to Action Button in Header -->
+            <div class="hidden md:block">
+                <a href="#contact" class="px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase text-white bg-gradient-to-r from-accentPink via-accentPurple to-accentBlue hover:opacity-90 transition shadow-lg hover:shadow-accentPurple/30">
+                    Hire Me
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menuBtn" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2 rounded-lg" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars text-2xl" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden glass-card border-t border-gray-800/80 px-6 py-6 space-y-4">
+            <a href="#home" class="mobile-link block text-gray-300 hover:text-white font-medium py-2">Home</a>
+            <a href="#about" class="mobile-link block text-gray-300 hover:text-white font-medium py-2">About Me</a>
+            <a href="#skills" class="mobile-link block text-gray-300 hover:text-white font-medium py-2">Skills & Tools</a>
+            <a href="#projects" class="mobile-link block text-gray-300 hover:text-white font-medium py-2">Projects</a>
+            <a href="#contact" class="mobile-link block text-gray-300 hover:text-white font-medium py-2">Contact</a>
+            <a href="#contact" class="mobile-link inline-block w-full text-center py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-accentPink to-accentBlue">Get In Touch</a>
+        </div>
+    </header>
+
+
+    <!-- ========================================== -->
+    <!-- HERO SECTION                               -->
+    <!-- ========================================== -->
+    <section id="home" class="min-h-screen pt-28 pb-16 flex items-center justify-center relative overflow-hidden">
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-accentPink/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-accentPurple/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-card border border-gray-700/60 text-xs font-semibold text-accentGreen uppercase tracking-widest">
+                        <span class="w-2 h-2 rounded-full bg-accentGreen animate-ping"></span>
+                        <span>Available for Freelance & Remote Work</span>
+                    </div>
+
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentPink via-accentPurple to-accentBlue">OMOADE</span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-gray-300 font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Multi-disciplinary digital creator specialized in <strong class="text-white font-semibold">Graphic Design</strong>, <strong class="text-white font-semibold">Photo & Video Editing</strong>, <strong class="text-white font-semibold">Audio Production</strong>, and <strong class="text-white font-semibold">Front-End Web Development</strong>.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold tracking-wide uppercase text-white bg-gradient-to-r from-accentPink via-accentPurple to-accentBlue hover:shadow-lg hover:shadow-accentPurple/40 transform hover:-translate-y-0.5 transition duration-300">
+                            Explore Projects <i class="fa-solid fa-arrow-down ml-2"></i>
+                        </a>
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold tracking-wide uppercase text-gray-200 glass-card border border-gray-700 hover:border-accentBlue hover:text-white transform hover:-translate-y-0.5 transition duration-300">
+                            Contact Me
+                        </a>
+                    </div>
+
+                    <div class="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-gray-400 border-t border-gray-800/80">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-earth-americas text-accentBlue"></i>
+                            <span>Worldwide Service</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-envelope text-accentPink"></i>
+                            <span>koredee04@gmail.com</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-phone text-accentGreen"></i>
+                            <span>07048585989</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EDIT HERO PROFILE IMAGE IN VS CODE: Replace src or use images/profile.jpg -->
+                <div class="lg:col-span-5 flex justify-center items-center">
+                    <div class="relative group">
+                        <div class="animated-profile-ring animate-pulse-glow animate-float">
+                            <div class="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden bg-darkBg border-4 border-darkBg relative">
+                                <img id="heroProfileImage" 
+                                     src="use.JPG" 
+                                     alt="OMOADE CREATIVE Profile" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-2 -left-2 glass-card px-4 py-2 rounded-2xl border border-gray-700 shadow-xl flex items-center space-x-2 animate-bounce">
+                            <i class="fa-solid fa-palette text-accentPink text-lg"></i>
+                            <span class="text-xs font-bold text-white">Creative Designer</span>
+                        </div>
+                        <div class="absolute -top-2 -right-2 glass-card px-4 py-2 rounded-2xl border border-gray-700 shadow-xl flex items-center space-x-2">
+                            <i class="fa-solid fa-code text-accentGreen text-lg"></i>
+                            <span class="text-xs font-bold text-white">Web Developer</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- ABOUT ME SECTION                           -->
+    <!-- ========================================== -->
+    <section id="about" class="py-24 bg-darkBg/60 relative border-t border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-extrabold tracking-widest text-accentBlue mb-2">Who I Am</h2>
+                <h3 class="font-heading text-3xl sm:text-4xl font-bold text-white">About OMOADE CREATIVE</h3>
+                <div class="w-20 h-1 bg-gradient-to-r from-accentPink via-accentPurple to-accentBlue mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- EDIT ABOUT PROFILE IMAGE IN VS CODE: Replace src below -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="animated-profile-ring p-1.5 rounded-full shadow-2xl">
+                        <div class="w-60 h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-darkBg relative">
+                            <img id="aboutProfileImage" 
+                                 src="use.JPG" 
+                                 alt="About OMOADE CREATIVE" 
+                                 class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6 text-gray-300">
+                    <h4 class="font-heading text-2xl font-semibold text-white">
+                        Bridging Design & Technology into Captivating Digital Experiences
+                    </h4>
+                    <p class="leading-relaxed">
+                        Welcome to <strong class="text-white">OMOADE CREATIVE</strong>! I am a passionate creative professional offering end-to-end media solutions. From striking branding graphics, professional video editing, and studio audio mixing to high-performance front-end web development—I build custom media tailored to your exact brand vision.
+                    </p>
+                    <p class="leading-relaxed">
+                        My goal is to deliver high-converting creative assets for clients <strong class="text-accentGreen">worldwide</strong>. I work with industry-standard suites like CorelDraw, Photoshop, Illustrator, Premiere Pro, DaVinci Resolve, CapCut, Pinnacle Studio, Audition, Cubase, Audacity, and modern web tech (HTML, CSS, JavaScript, Node.js).
+                    </p>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="glass-card p-4 rounded-2xl border border-gray-800 text-center">
+                            <span class="block text-2xl font-bold text-accentPink">100%</span>
+                            <span class="text-xs text-gray-400">Client Satisfaction</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-2xl border border-gray-800 text-center">
+                            <span class="block text-2xl font-bold text-accentPurple">4-in-1</span>
+                            <span class="text-xs text-gray-400">Creative Expertise</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-2xl border border-gray-800 text-center col-span-2 sm:col-span-1">
+                            <span class="block text-2xl font-bold text-accentBlue">Global</span>
+                            <span class="text-xs text-gray-400">Remote Availability</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- SKILLS & TOOLS SECTION                     -->
+    <!-- ========================================== -->
+    <section id="skills" class="py-24 bg-darkBg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-extrabold tracking-widest text-accentPink mb-2">Technical Proficiency</h2>
+                <h3 class="font-heading text-3xl sm:text-4xl font-bold text-white">Skills & Software Tools</h3>
+                <div class="w-20 h-1 bg-gradient-to-r from-accentPink via-accentPurple to-accentBlue mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Graphic Design -->
+                <div class="glass-card p-6 rounded-3xl border border-gray-800 hover:border-accentPink transition duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-accentPink/10 text-accentPink flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-bezier-curve"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-white mb-3">Graphic Design</h4>
+                    <p class="text-sm text-gray-400 mb-4">Flyers, logos, corporate branding, vector art, banners, and typography layouts.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">CorelDraw</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">Photoshop</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">Adobe Illustrator</span>
+                    </div>
+                </div>
+
+                <!-- Photo Editing -->
+                <div class="glass-card p-6 rounded-3xl border border-gray-800 hover:border-accentPurple transition duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-accentPurple/10 text-accentPurple flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-camera-retro"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-white mb-3">Photo Editing & UI</h4>
+                    <p class="text-sm text-gray-400 mb-4">Skin retouching, color grading, background removal, photo manipulation, and UI prototypes.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">Adobe Photoshop</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">Figma</span>
+                    </div>
+                </div>
+
+                <!-- Video Editing -->
+                <div class="glass-card p-6 rounded-3xl border border-gray-800 hover:border-accentBlue transition duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-accentBlue/10 text-accentBlue flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-white mb-3">Video Editing</h4>
+                    <p class="text-sm text-gray-400 mb-4">Cinematic edits, commercials, motion graphics, transitions, color grading, and promo clips.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">Premiere Pro</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">CapCut</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">DaVinci Resolve</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">Pinnacle Studio</span>
+                    </div>
+                </div>
+
+                <!-- Audio Editing -->
+                <div class="glass-card p-6 rounded-3xl border border-gray-800 hover:border-accentGreen transition duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-accentGreen/10 text-accentGreen flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-white mb-3">Audio Editing</h4>
+                    <p class="text-sm text-gray-400 mb-4">Vocal cleanup, noise reduction, beat mixing, podcast mastering, and sound effects.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">Adobe Audition</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">Cubase</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">Audacity</span>
+                    </div>
+                </div>
+
+                <!-- Front-End Development -->
+                <div class="glass-card p-6 rounded-3xl border border-gray-800 hover:border-accentPink transition duration-300 group lg:col-span-2">
+                    <div class="w-12 h-12 rounded-2xl bg-accentPink/10 text-accentPink flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-white mb-3">Front-End Development</h4>
+                    <p class="text-sm text-gray-400 mb-4">Clean semantic code, responsive layouts, Tailwind styling, interactive UI elements, and Node.js integration.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">HTML5</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">CSS3 / Tailwind</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">JavaScript (ES6+)</span>
+                        <span class="px-3 py-1 bg-darkBg text-xs rounded-full border border-gray-700 text-gray-300">Node.js</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- PROJECTS SECTION                           -->
+    <!-- (Portrait Graphic Cards + 2 Interactive Landscape Video Players) -->
+    <!-- ========================================== -->
+    <section id="projects" class="py-24 bg-darkBg/80 border-t border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs uppercase font-extrabold tracking-widest text-accentBlue mb-2">Portfolio Gallery</h2>
+                <h3 class="font-heading text-3xl sm:text-4xl font-bold text-white">Featured Designs & Video Projects</h3>
+                <p class="text-sm text-gray-400 mt-2">Featuring portrait graphic/photo designs and 2 interactive landscape video showpieces.</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-accentPink via-accentPurple to-accentBlue mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Project Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- PORTRAIT DESIGN CARD 1 (EDITABLE IN VS CODE) -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-gray-800 hover:border-accentPink transition duration-500 group flex flex-col">
+                    <div class="aspect-[3/4] relative overflow-hidden bg-gray-900">
+                        <img src="CHIN CHIN.jpg" 
+                             alt="Branding Flyer Design" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-accentPink bg-darkBg/90 px-3 py-1 rounded-full border border-accentPink/30">Graphic Design</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-heading font-bold text-lg text-white mb-2">Corporate Flyer & Branding</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">Designed in CorelDraw & Photoshop with custom vector graphics and layout typography.</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-800/60 flex justify-between items-center text-xs">
+                            <span class="text-gray-400">Portrait Design </span>
+                            <a href="#contact" class="text-accentPink hover:underline font-semibold">Contact For Similar Design &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PORTRAIT DESIGN CARD 2 (EDITABLE IN VS CODE) -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-gray-800 hover:border-accentPurple transition duration-500 group flex flex-col">
+                    <div class="aspect-[3/4] relative overflow-hidden bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
+                             alt="High-End Portrait Retouching" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-accentPurple bg-darkBg/90 px-3 py-1 rounded-full border border-accentPurple/30">Photo Editing</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-heading font-bold text-lg text-white mb-2">Studio Retouch & Color Grade</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">Advanced frequency separation, skin tone enhancement, and color balance using Photoshop & Figma.</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-800/60 flex justify-between items-center text-xs">
+                            <span class="text-gray-400">Portrait Design</span>
+                            <a href="#contact" class="text-accentPurple hover:underline font-semibold">Contact For Photo Edit &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PORTRAIT DESIGN CARD 3 (EDITABLE IN VS CODE) -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-gray-800 hover:border-accentBlue transition duration-500 group flex flex-col">
+                    <div class="aspect-[3/4] relative overflow-hidden bg-gray-900">
+                        <img src="music-concert-.jpg" 
+                             alt="Event Concert Poster" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-accentBlue bg-darkBg/90 px-3 py-1 rounded-full border border-accentBlue/30">Graphic Poster</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-heading font-bold text-lg text-white mb-2">Concert & Event Poster</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">Vibrant lighting effects, dynamic typography, and asset composition created in Illustrator.</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-800/60 flex justify-between items-center text-xs">
+                            <span class="text-gray-400">Portrait Design #3</span>
+                            <a href="#contact" class="text-accentBlue hover:underline font-semibold">Contact For Poster &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PORTRAIT DESIGN CARD 4 (EDITABLE IN VS CODE) -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-gray-800 hover:border-accentGreen transition duration-500 group flex flex-col">
+                    <div class="aspect-[3/4] relative overflow-hidden bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80" 
+                             alt="Video Reel Art" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-accentGreen bg-darkBg/90 px-3 py-1 rounded-full border border-accentGreen/30">Vertical Reel Edit</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-heading font-bold text-lg text-white mb-2">Social Reel Promo Art</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">Short-form promotional video artwork edited in CapCut & Premiere Pro with custom audio sync.</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-800/60 flex justify-between items-center text-xs">
+                            <span class="text-gray-400">Portrait Design</span>
+                            <a href="#contact" class="text-accentGreen hover:underline font-semibold">Contact For Reels &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PORTRAIT DESIGN CARD 5 (EDITABLE IN VS CODE) -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-gray-800 hover:border-accentPink transition duration-500 group flex flex-col">
+                    <div class="aspect-[3/4] relative overflow-hidden bg-gray-900">
+                        <img src="promo.jfif" 
+                             alt="Creative Illustration" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-accentPink bg-darkBg/90 px-3 py-1 rounded-full border border-accentPink/30">Illustration</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-heading font-bold text-lg text-white mb-2">Product Promo Artwork</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">Clean product visualization combining Figma UI layouts and CorelDraw vector graphics.</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-800/60 flex justify-between items-center text-xs">
+                            <span class="text-gray-400">Portrait Design</span>
+                            <a href="#contact" class="text-accentPink hover:underline font-semibold">Contact For Product Art &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ======================================================== -->
+                <!-- LANDSCAPE VIDEO PROJECT 1 (INTERACTIVE HTML5 VIDEO)     -->
+                <!-- EDIT VIDEO SOURCE IN VS CODE BELOW: src="videos/project1.mp4" -->
+                <!-- ======================================================== -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-gray-800 hover:border-accentBlue transition duration-500 md:col-span-2 lg:col-span-3 flex flex-col">
+                    <div class="aspect-video relative bg-black overflow-hidden group">
+                        <!-- Responsive HTML5 Video Element -->
+                        <video controls 
+                               preload="metadata" 
+                               poster="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1200&q=80"
+                               class="w-full h-full object-cover">
+                            <!-- CHANGE THIS TO YOUR LOCAL MP4 IN VS CODE: e.g. <source src="videos/project1.mp4" type="video/mp4"> -->
+                            <source src="LYTE WORLD MULTIMEDIA.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video playback.
+                        </video>
+                        <div class="absolute top-4 left-4 pointer-events-none">
+                            <span class="px-3 py-1 bg-darkBg/80 backdrop-blur-md text-xs font-bold text-accentBlue rounded-full border border-accentBlue/30 uppercase tracking-widest shadow-lg">
+                                <i class="fa-solid fa-circle-play mr-1"></i> Landscape Video
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between sm:flex-row sm:items-center gap-4">
+                        <div>
+                            <div class="flex items-center space-x-2 text-xs text-accentBlue font-semibold mb-1">
+                                <span>Premiere Pro</span> &bull; <span>DaVinci Resolve</span> &bull; <span>Adobe Audition</span>
+                            </div>
+                            <h4 class="font-heading font-bold text-xl text-white">Cinematic Brand Commercial & Audio Mix</h4>
+                            <p class="text-xs sm:text-sm text-gray-400 mt-1">High-definition landscape promotional edit complete with seamless transitions, audio noise reduction, and cinematic color grading.</p>
+                        </div>
+                        <div class="shrink-0">
+                            <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-accentBlue to-accentPurple hover:opacity-90 transition shadow-md">
+                                Request Video Edit <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ======================================================== -->
+                <!-- LANDSCAPE VIDEO PROJECT 2 (INTERACTIVE HTML5 VIDEO)     -->
+                <!-- EDIT VIDEO SOURCE IN VS CODE BELOW: src="videos/project2.mp4" -->
+                <!-- ======================================================== -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-gray-800 hover:border-accentGreen transition duration-500 md:col-span-2 lg:col-span-3 flex flex-col">
+                    <div class="aspect-video relative bg-black overflow-hidden group">
+                        <!-- Responsive HTML5 Video Element -->
+                        <video controls 
+                               preload="metadata" 
+                               poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80"
+                               class="w-full h-full object-cover">
+                            <!-- CHANGE THIS TO YOUR LOCAL MP4 IN VS CODE: e.g. <source src="videos/project2.mp4" type="video/mp4"> -->
+                            <source src="GLOWING TORUS.mov" type="video/mp4">
+                            Your browser does not support HTML5 video playback.
+                        </video>
+                        <div class="absolute top-4 left-4 pointer-events-none">
+                            <span class="px-3 py-1 bg-darkBg/80 backdrop-blur-md text-xs font-bold text-accentGreen rounded-full border border-accentGreen/30 uppercase tracking-widest shadow-lg">
+                                <i class="fa-solid fa-circle-play mr-1"></i> Landscape Video
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between sm:flex-row sm:items-center gap-4">
+                        <div>
+                            <div class="flex items-center space-x-2 text-xs text-accentGreen font-semibold mb-1">
+                                <span>CapCut</span> &bull; <span>Pinnacle Studio</span> &bull; <span>Cubase Sound</span>
+                            </div>
+                            <h4 class="font-heading font-bold text-xl text-white">Motion Graphics Showcase & Sound Effects</h4>
+                            <p class="text-xs sm:text-sm text-gray-400 mt-1">Multi-layered motion edit with custom sound engineering engineered for broadcast and web platforms.</p>
+                        </div>
+                        <div class="shrink-0">
+                            <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-accentGreen to-accentBlue hover:opacity-90 transition shadow-md">
+                                Request Motion Video <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Animated CTA Banner Inside Project Section -->
+            <div class="mt-16 glass-card p-8 sm:p-12 rounded-3xl border border-gray-800 text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-accentPink/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="relative z-10 max-w-2xl mx-auto space-y-4">
+                    <h4 class="font-heading text-2xl sm:text-3xl font-bold text-white">
+                        Need Custom Graphics, Photo/Video Editing, or a Custom Website?
+                    </h4>
+                    <p class="text-sm text-gray-300">
+                        Get in touch now to order custom designs, video projects, audio mixing, or complete website front-end development!
+                    </p>
+                    <div class="pt-2">
+                        <a href="#contact" class="inline-block px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-accentPink via-accentPurple to-accentBlue hover:shadow-lg hover:shadow-accentPurple/30 transition transform hover:-translate-y-1">
+                            Contact For More Designs & Videos <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- CONTACT SECTION                            -->
+    <!-- ========================================== -->
+    <section id="contact" class="py-24 bg-darkBg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-extrabold tracking-widest text-accentGreen mb-2">Get In Touch</h2>
+                <h3 class="font-heading text-3xl sm:text-4xl font-bold text-white">Let's Work Together</h3>
+                <p class="text-sm text-gray-400 mt-2">Send a message directly to my email or chat on phone / WhatsApp instantly.</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-accentPink via-accentPurple to-accentBlue mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Direct Cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    
+                    <!-- Email Card 1 -->
+                    <a href="mailto:koredee04@gmail.com" class="block glass-card p-6 rounded-3xl border border-gray-800 hover:border-accentPink transition duration-300 group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-accentPink/10 text-accentPink flex items-center justify-center text-xl group-hover:scale-110 transition">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400 uppercase font-semibold">Primary Email</span>
+                                <p class="text-sm font-medium text-white group-hover:text-accentPink transition">koredee04@gmail.com</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Email Card 2 -->
+                    <a href="mailto:akoredemoyosoreoluwa84@gmail.com" class="block glass-card p-6 rounded-3xl border border-gray-800 hover:border-accentPurple transition duration-300 group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-accentPurple/10 text-accentPurple flex items-center justify-center text-xl group-hover:scale-110 transition">
+                                <i class="fa-solid fa-at"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400 uppercase font-semibold">Secondary Email</span>
+                                <p class="text-sm font-medium text-white group-hover:text-accentPurple transition">akoredemoyosoreoluwa84@gmail.com</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Phone / WhatsApp Card 1 -->
+                    <a href="https://wa.me/2347048585989" target="_blank" class="block glass-card p-6 rounded-3xl border border-gray-800 hover:border-accentGreen transition duration-300 group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-accentGreen/10 text-accentGreen flex items-center justify-center text-xl group-hover:scale-110 transition">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400 uppercase font-semibold">Call / WhatsApp Line 1</span>
+                                <p class="text-sm font-medium text-white group-hover:text-accentGreen transition">07048585989</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Phone Card 2 -->
+                    <a href="tel:09133831914" class="block glass-card p-6 rounded-3xl border border-gray-800 hover:border-accentBlue transition duration-300 group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-accentBlue/10 text-accentBlue flex items-center justify-center text-xl group-hover:scale-110 transition">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400 uppercase font-semibold">Direct Phone Line 2</span>
+                                <p class="text-sm font-medium text-white group-hover:text-accentBlue transition">09133831914</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Location Card -->
+                    <div class="glass-card p-6 rounded-3xl border border-gray-800 flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-gray-800 text-gray-300 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-400 uppercase font-semibold">Coverage Area</span>
+                            <p class="text-sm font-medium text-white">Worldwide Service (Remote)</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Contact Message Form -->
+                <div class="lg:col-span-7">
+                    <form id="contactForm" class="glass-card p-8 sm:p-10 rounded-3xl border border-gray-800 space-y-6">
+                        <h4 class="font-heading text-xl font-bold text-white mb-2">Send an Instant Message</h4>
+                        <p class="text-xs text-gray-400">Submitting this form triggers your email client addressed directly to koredee04@gmail.com.</p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-xs uppercase font-semibold text-gray-300 mb-2">Your Name</label>
+                                <input type="text" id="name" required placeholder="John Doe" 
+                                       class="w-full bg-darkBg border border-gray-800 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accentPink transition">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs uppercase font-semibold text-gray-300 mb-2">Your Email</label>
+                                <input type="email" id="email" required placeholder="john@example.com" 
+                                       class="w-full bg-darkBg border border-gray-800 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accentPink transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="service" class="block text-xs uppercase font-semibold text-gray-300 mb-2">Service Needed</label>
+                            <select id="service" class="w-full bg-darkBg border border-gray-800 rounded-2xl px-4 py-3 text-sm text-gray-300 focus:outline-none focus:border-accentPink transition">
+                                <option value="Graphic Design">Graphic Design (CorelDraw / Photoshop / Illustrator)</option>
+                                <option value="Photo Editing">Photo Editing & Retouching (Photoshop / Figma)</option>
+                                <option value="Video Editing">Video Editing (Premiere Pro / CapCut / DaVinci)</option>
+                                <option value="Audio Editing">Audio Editing & Mixing (Audition / Cubase / Audacity)</option>
+                                <option value="Front-End Development">Front-End Development (HTML / CSS / JS / Node.js)</option>
+                                <option value="Full Project Bundle">All-in-One Media & Website Bundle</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs uppercase font-semibold text-gray-300 mb-2">Project Details</label>
+                            <textarea id="message" rows="4" required placeholder="Describe your project requirements here..." 
+                                      class="w-full bg-darkBg border border-gray-800 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accentPink transition"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-2xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-accentPink via-accentPurple to-accentBlue hover:opacity-95 transition shadow-lg shadow-accentPurple/20">
+                            Send Email Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- FOOTER                                     -->
+    <!-- ========================================== -->
+    <footer class="py-12 bg-darkBg border-t border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <a href="#home" class="inline-block font-heading font-extrabold text-2xl tracking-wider text-white">
+                OMOADE <span class="text-accentBlue">CREATIVE</span>
+            </a>
+            
+            <p class="text-xs text-gray-400 max-w-md mx-auto">
+                Delivering high-quality graphics design, video & audio editing, photo retouching, and front-end code solutions worldwide.
+            </p>
+
+            <div class="flex justify-center space-x-6 text-gray-400 text-lg">
+                <a href="mailto:koredee04@gmail.com" class="hover:text-accentPink transition" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://wa.me/2347048585989" target="_blank" class="hover:text-accentGreen transition" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="tel:09133831914" class="hover:text-accentBlue transition" title="Phone"><i class="fa-solid fa-phone"></i></a>
+            </div>
+
+            <div class="text-xs text-gray-500 pt-4 border-t border-gray-800/50">
+                &copy; <span id="currentYear"></span> OMOADE CREATIVE. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT LOGIC                           -->
+    <!-- ========================================== -->
+    <script>
+        // Dynamic copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Contact Form Mailto Handler
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            const subject = encodeURIComponent(`Inquiry for ${service} - From ${name}`);
+            const body = encodeURIComponent(
+                `Hello OMOADE CREATIVE,\n\n` +
+                `My name is ${name} (${email}).\n` +
+                `Service Required: ${service}\n\n` +
+                `Project Details:\n${message}\n\n` +
+                `Looking forward to your reply!`
+            );
+
+            window.location.href = `mailto:koredee04@gmail.com?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+</html>
